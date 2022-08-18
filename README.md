@@ -4,13 +4,13 @@ I built this Netflix app as a personal challenge. I tried to make it as close as
 ## Screenshots
 
 ### Home
-![home](screenshots/Home.PNG)
+![home](screenshots/Home.PNG?raw=true)
 
 ### Trailer
-![trailer](screenshots/Trailer.PNG)
+![trailer](screenshots/Trailer.PNG?raw=true)
 
 ### Login
-![login](screenshots/Login.PNG)
+![login](screenshots/Login.PNG?raw=true)
 
 ## Built With
 
