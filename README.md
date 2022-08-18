@@ -1,6 +1,17 @@
 # Netflix Clone
 I built this Netflix app as a personal challenge. I tried to make it as close as possible to the Official Netflix site, it contains user authentication using [Firebase](https://firebase.google.com/), and gets the movies/tv series data from the [TMDB API](https://developers.themoviedb.org/3/).
 
+## Screenshots
+
+### Home
+![home](screenshots/Home.PNG)
+
+### Trailer
+![trailer](screenshots/Trailer.PNG)
+
+### Login
+![login](screenshots/Login.PNG)
+
 ## Built With
 
 ![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
