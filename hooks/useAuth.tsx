@@ -1,4 +1,12 @@
-import { useState, useEffect, useMemo, useContext, createContext } from "react";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  useContext,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -17,6 +25,7 @@ interface IAuth {
   logout: () => Promise<void>;
   error: string | null;
   loading: boolean;
+  setError: Dispatch<SetStateAction<string | null>>;
 }
 
 const AuthContext = createContext<IAuth>({
@@ -26,6 +35,7 @@ const AuthContext = createContext<IAuth>({
   logout: async () => {},
   error: null,
   loading: false,
+  setError: () => {},
 });
 
 interface AuthProviderProps {
@@ -90,7 +100,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const memoizedValue = useMemo(
-    () => ({ user, signUp, signIn, logout, loading, error }),
+    () => ({ user, signUp, signIn, logout, loading, error, setError }),
     [user, loading, error]
   );
 

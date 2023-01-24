@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import Alert from "@mui/material/Alert";
 
 interface Inputs {
   email: string;
@@ -11,7 +12,7 @@ interface Inputs {
 
 function Login() {
   const [login, setLogin] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, error, setError } = useAuth();
 
   const {
     register,
@@ -80,7 +81,7 @@ function Login() {
               className={`input ${
                 errors.password && "border-b-2 border-orange-500"
               }`}
-              {...register("password", { required: true })}
+              {...register("password", { required: true, minLength: 4 })}
             />
             {errors.password && (
               <p className="p-1 text-[13px] font-light text-orange-500">
@@ -108,6 +109,24 @@ function Login() {
           </button>
         </div>
       </form>
+      {error === "Firebase: Error (auth/user-not-found)." && (
+        <Alert
+          className="w-2/3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute !p-3 lg:w-1/3"
+          severity="error"
+          onClose={() => setError(null)}
+        >
+          The email adress that you've entered doesn't match any account.
+        </Alert>
+      )}
+      {error === "Firebase: Error (auth/wrong-password)." && (
+        <Alert
+          className="w-2/3 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute !p-3 lg:w-1/3"
+          severity="error"
+          onClose={() => setError(null)}
+        >
+          Incorrect password.
+        </Alert>
+      )}
     </div>
   );
 }
