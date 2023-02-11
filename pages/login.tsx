@@ -18,7 +18,7 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
@@ -58,6 +58,10 @@ function Login() {
       >
         <h1 className="text-4xl font-semibold">Sign In</h1>
         <div className="space-y-4">
+          <p className="text-red-500 italic m-0">
+            WARNING: This isn't the real Netflix site. Don't use your real
+            Netflix credentials.
+          </p>
           <label className="inline-block w-full">
             <input
               type="email"
@@ -65,7 +69,10 @@ function Login() {
               className={`input ${
                 errors.email && "border-b-2 border-orange-500"
               }`}
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              })}
             />
             {errors.email && (
               <p className="p-1 text-[13px] font-light text-orange-500">
@@ -81,11 +88,11 @@ function Login() {
               className={`input ${
                 errors.password && "border-b-2 border-orange-500"
               }`}
-              {...register("password", { required: true, minLength: 4 })}
+              {...register("password", { required: true, minLength: 6 })}
             />
             {errors.password && (
               <p className="p-1 text-[13px] font-light text-orange-500">
-                Your password must contain between 4 and 60 characters.
+                Password should be at least 6 characters.
               </p>
             )}
           </label>
